@@ -1,60 +1,29 @@
-const moodButton = document.getElementById('moodButton');
-const moodResult = document.getElementById('moodResult');
+const sidebar = document.getElementById('sidebar');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const promptInput = document.getElementById('promptInput');
 
-const activityIdeas = [
-  'Read one short article on something new.',
-  'Play your favorite song and stretch for 3 minutes.',
-  'Make a cup of tea and sit away from screens.',
-  'Draw a tiny doodle of your current mood.',
-  'Text a friend you have not talked to in a while.'
-];
+if (mobileMenuBtn && sidebar) {
+  mobileMenuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
 
-if (moodButton && moodResult) {
-  moodButton.addEventListener('click', () => {
-    const random = activityIdeas[Math.floor(Math.random() * activityIdeas.length)];
-    moodResult.textContent = random;
+  document.addEventListener('click', (event) => {
+    if (window.innerWidth > 920) return;
+    const clickedInsideSidebar = sidebar.contains(event.target);
+    const clickedMenuButton = mobileMenuBtn.contains(event.target);
+
+    if (!clickedInsideSidebar && !clickedMenuButton) {
+      sidebar.classList.remove('open');
+    }
   });
 }
 
-const ideaForm = document.getElementById('ideaForm');
-const ideaInput = document.getElementById('ideaInput');
-const ideaList = document.getElementById('ideaList');
-const STORAGE_KEY = 'little-compass-ideas';
+if (promptInput) {
+  const autoResize = () => {
+    promptInput.style.height = 'auto';
+    promptInput.style.height = `${Math.min(promptInput.scrollHeight, 180)}px`;
+  };
 
-function renderIdeas(items) {
-  if (!ideaList) return;
-  ideaList.innerHTML = '';
-
-  if (items.length === 0) {
-    const empty = document.createElement('li');
-    empty.textContent = 'No ideas yet. Add your first one!';
-    ideaList.appendChild(empty);
-    return;
-  }
-
-  items.forEach((item) => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    ideaList.appendChild(li);
-  });
-}
-
-if (ideaList) {
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  renderIdeas(saved);
-}
-
-if (ideaForm && ideaInput) {
-  ideaForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const value = ideaInput.value.trim();
-    if (!value) return;
-
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    saved.push(value);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-    renderIdeas(saved);
-    ideaInput.value = '';
-    ideaInput.focus();
-  });
+  promptInput.addEventListener('input', autoResize);
+  autoResize();
 }

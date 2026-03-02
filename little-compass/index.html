@@ -1,51 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Little Compass | Home</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <h1>Little Compass</h1>
-    <p class="tagline">A tiny guide for curious days.</p>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="ideas.html">Ideas</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Frontend Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+          <button class="new-chat-btn">
+            <span>✚</span>
+            <span>New chat</span>
+          </button>
+          <button class="icon-btn search-btn" aria-label="Search chats">⌕</button>
+        </div>
 
-  <main class="card-grid">
-    <section class="card hero">
-      <h2>Pick Your Mood</h2>
-      <p>Press the button for a small activity suggestion whenever you feel bored.</p>
-      <button id="moodButton">Give me an idea</button>
-      <p id="moodResult" aria-live="polite">Ready when you are ✨</p>
-    </section>
+        <div class="sidebar-section">
+          <p class="sidebar-label">Today</p>
+          <button class="chat-link active">Create a responsive dashboard</button>
+          <button class="chat-link">How to center a div in CSS</button>
+          <button class="chat-link">Explain React hooks simply</button>
+        </div>
 
-    <section class="card">
-      <h3>What is this?</h3>
-      <p>
-        Little Compass is a simple mini-site with useful nudges and calm visuals. Think of it as a pocket homepage.
-      </p>
-    </section>
+        <div class="sidebar-section">
+          <p class="sidebar-label">Previous 7 Days</p>
+          <button class="chat-link">AI tools for productivity</button>
+          <button class="chat-link">Tailwind interview prep</button>
+          <button class="chat-link">JavaScript array methods</button>
+        </div>
 
-    <section class="card">
-      <h3>Try this now</h3>
-      <ul>
-        <li>Take a 5-minute walk</li>
-        <li>Write one kind message</li>
-        <li>Organize one small area</li>
-      </ul>
-    </section>
-  </main>
+        <div class="sidebar-footer">
+          <button class="foot-link">Upgrade plan</button>
+          <button class="foot-link">Customize ChatGPT</button>
+          <button class="profile-card">
+            <span class="avatar">U</span>
+            <span>User</span>
+          </button>
+        </div>
+      </aside>
 
-  <footer>
-    <small>Made with plain HTML, CSS, and JavaScript.</small>
-  </footer>
+      <main class="chat-layout">
+        <header class="topbar">
+          <button id="mobileMenuBtn" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
+          <button class="model-switcher">ChatGPT ▾</button>
+          <button class="icon-btn">⤴</button>
+        </header>
 
-  <script src="script.js"></script>
-</body>
+        <section class="chat-window">
+          <div class="welcome-state">
+            <h1>What can I help with?</h1>
+          </div>
+
+          <article class="message assistant">
+            <div class="bubble">
+              Sure — I can create a complete frontend that looks and feels like ChatGPT, fully responsive for mobile, tablet, and desktop.
+            </div>
+          </article>
+
+          <article class="message user">
+            <div class="bubble">Great. I need only frontend, no backend logic.</div>
+          </article>
+
+          <article class="message assistant">
+            <div class="bubble">
+              Done. This interface includes a left sidebar, model header, prompt suggestions, chat bubbles, and a sticky composer area.
+            </div>
+          </article>
+
+          <section class="suggestions" aria-label="Prompt suggestions">
+            <button class="suggestion-card">
+              <strong>Create</strong>
+              <span>Build a modern landing page with HTML and CSS.</span>
+            </button>
+            <button class="suggestion-card">
+              <strong>Explore</strong>
+              <span>Suggest a travel plan for a 3-day weekend.</span>
+            </button>
+            <button class="suggestion-card">
+              <strong>Code</strong>
+              <span>Generate a reusable navbar component in React.</span>
+            </button>
+            <button class="suggestion-card">
+              <strong>Learn</strong>
+              <span>Explain responsive design in simple steps.</span>
+            </button>
+          </section>
+        </section>
+
+        <footer class="composer-wrap">
+          <form class="composer" action="#" method="post">
+            <button type="button" class="icon-btn">＋</button>
+            <textarea
+              id="promptInput"
+              rows="1"
+              placeholder="Message ChatGPT"
+              aria-label="Message ChatGPT"
+            ></textarea>
+            <button type="button" class="icon-btn">🎙</button>
+            <button type="submit" class="send-btn" aria-label="Send">↑</button>
+          </form>
+          <p class="disclaimer">ChatGPT can make mistakes. Check important info.</p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
